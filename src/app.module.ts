@@ -5,10 +5,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SharedModule } from './shared/shared.module';
 import { MongooseModule} from '@nestjs/mongoose';
+import { UserModule } from './user/user.module';
 
 
 @Module({
-  imports: [SharedModule, MongooseModule.forRoot(ConfigurationService.conectionString)],
+  imports: [SharedModule, MongooseModule.forRoot(ConfigurationService.conectionString), UserModule],
   controllers: [AppController],
   providers: [AppService],
 })
