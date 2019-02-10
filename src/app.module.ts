@@ -4,9 +4,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SharedModule } from './shared/shared.module';
+import { MongooseModule} from '@nestjs/mongoose';
+
 
 @Module({
-  imports: [SharedModule],
+  imports: [SharedModule, MongooseModule.forRoot(ConfigurationService.conectionString)],
   controllers: [AppController],
   providers: [AppService],
 })
