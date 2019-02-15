@@ -12,8 +12,8 @@ export class AppService {
   public videoNames = Array<string>();
 
   constructor() {
-    this.getAllImages();
-    this.getAllVideos();
+    this.loadAllImages();
+    this.loadAllVideos();
   }
 
   // Function that returns URL image given a name (maybe delete in the future)
@@ -22,8 +22,7 @@ export class AppService {
     return imgPath;
   }
 
-  // Function that get all images URL's and return an array with all of it
-  getAllImages() {
+  loadAllImages() {
     const imageFolder = join(__dirname, this.imageFolder);
     glob(`${imageFolder}*.*`, (err, files) => {
       files.forEach(element => {
@@ -38,14 +37,31 @@ export class AppService {
     });
   }
 
+  // Function that get all images URL's and return an array with all of it
+  getAllImages(): any {
+    const imageFolder = join(__dirname, this.imageFolder);
+    glob(`${imageFolder}*.*`, (err, files) => {
+      this.clearImagesNames();
+      files.forEach(element => {
+        if (
+          element.split('.')[1] === 'jpg' ||
+          element.split('.')[1] === 'png' ||
+          element.split('.')[1] === 'jpeg'
+        ) {
+          this.imageNames.push(element);
+        }
+      });
+    });
+    return this.imageNames;
+  }
+
   // Function that returns URL video given a name (maybe delete in the future)
   getVideoByName(videoName): string {
     const videoPath = this.getVideoPath(videoName);
     return videoPath;
   }
 
-  // Function that get all videos URL's and return an array with all of it
-  getAllVideos() {
+  loadAllVideos() {
     const imageFolder = join(__dirname, this.videoFolder);
     glob(`${imageFolder}*.*`, (err, files) => {
       files.forEach(element => {
@@ -61,6 +77,23 @@ export class AppService {
     });
   }
 
+  // Function that get all videos URL's and return an array with all of it
+  getAllVideos(): any {
+    const imageFolder = join(__dirname, this.videoFolder);
+    glob(`${imageFolder}*.*`, (err, files) => {
+      files.forEach(element => {
+        if (
+          element.split('.')[1] === 'jpg' ||
+          element.split('.')[1] === 'png' ||
+          element.split('.')[1] === 'jpeg'
+        ) {
+          this.videoNames.push(element);
+        }
+      });
+    });
+    return this.videoNames;
+  }
+
   // Function that get the absolute path of the image
   private getImgPath(imgName: string) {
     return join(__dirname, this.imageFolder, imgName);
@@ -69,5 +102,10 @@ export class AppService {
   // Function that get the absolute path of the video
   private getVideoPath(videoName: string) {
     return join(__dirname, this.videoFolder, videoName);
+  }
+
+  // Funtion that clears the array of images names
+  private clearImagesNames() {
+    this.imageNames = [];
   }
 }

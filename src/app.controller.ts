@@ -14,9 +14,9 @@ export class AppController {
 
   // Returns a vector of URL's of each image in the directory images
   @Get('images')
-  getAllImages(@Res() res) {
-    const imagePaths = this.appService.imageNames;
-    return res.send(imagePaths);
+  getAll(@Res() res) {
+    const imgPath = this.appService.getAllImages();
+    return res.send(imgPath);
   }
 
   // Given a name of a video it return the video path
@@ -28,8 +28,8 @@ export class AppController {
 
   // Returns an array of URL's of each video in the directory videos
   @Get('videos')
-  getAllVideos(@Res() res) {
-    const videosPaths = this.appService.videoNames;
-    return res.send(videosPaths);
+  getAllV(@Res() res) {
+    const imgPath = this.appService.getAllVideos();
+    return res.send(imgPath);
   }
 }
