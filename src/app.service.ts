@@ -5,7 +5,7 @@ import { glob } from 'glob';
 @Injectable()
 export class AppService {
   // This are the relative routes for the folders that contains the images/videos (should change this to yours)
-  private imageFolder = '../../public/images/';
+  private imageFolder = '../../Escritorio/';
   private videoFolder = '../../public/videos/';
 
   public imageNames = Array<string>();
@@ -26,20 +26,7 @@ export class AppService {
     const imageFolder = join(__dirname, this.imageFolder);
     glob(`${imageFolder}*.*`, (err, files) => {
       files.forEach(element => {
-        if (
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === 'jpg' ||
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === 'png' ||
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === 'jpeg'
-        ) {
+        if (this.checkImgExtension(element)) {
           this.imageNames.push(element);
         }
       });
@@ -52,20 +39,7 @@ export class AppService {
     glob(`${imageFolder}*.*`, (err, files) => {
       this.clearImagesNames();
       files.forEach(element => {
-        if (
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === 'jpg' ||
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === 'png' ||
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === 'jpeg'
-        ) {
+        if (this.checkImgExtension(element)) {
           this.imageNames.push(element);
         }
       });
@@ -83,24 +57,7 @@ export class AppService {
     const imageFolder = join(__dirname, this.videoFolder);
     glob(`${imageFolder}*.*`, (err, files) => {
       files.forEach(element => {
-        if (
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === 'mp4' ||
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === '3gp' ||
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === 'flv' ||
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === 'mvk'
-        ) {
+        if (this.checkVideoExtension(element)) {
           this.videoNames.push(element);
         }
       });
@@ -112,20 +69,7 @@ export class AppService {
     const imageFolder = join(__dirname, this.videoFolder);
     glob(`${imageFolder}*.*`, (err, files) => {
       files.forEach(element => {
-        if (
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === 'jpg' ||
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === 'png' ||
-          element
-            .split('/')
-            .pop(-1)
-            .split('.')[1] === 'jpeg'
-        ) {
+        if (this.checkVideoExtension(element)) {
           this.videoNames.push(element);
         }
       });
@@ -146,5 +90,51 @@ export class AppService {
   // Funtion that clears the array of images names
   private clearImagesNames() {
     this.imageNames = [];
+  }
+
+  private checkImgExtension(absolutePath): boolean {
+    if (
+      absolutePath
+        .split('/')
+        .pop(-1)
+        .split('.')[1] === 'jpg' ||
+      absolutePath
+        .split('/')
+        .pop(-1)
+        .split('.')[1] === 'png' ||
+      absolutePath
+        .split('/')
+        .pop(-1)
+        .split('.')[1] === 'jpeg'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private checkVideoExtension(absolutePath): boolean {
+    if (
+      absolutePath
+        .split('/')
+        .pop(-1)
+        .split('.')[1] === 'mp4' ||
+      absolutePath
+        .split('/')
+        .pop(-1)
+        .split('.')[1] === '3gp' ||
+      absolutePath
+        .split('/')
+        .pop(-1)
+        .split('.')[1] === 'flv' ||
+      absolutePath
+        .split('/')
+        .pop(-1)
+        .split('.')[1] === 'mvk'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
