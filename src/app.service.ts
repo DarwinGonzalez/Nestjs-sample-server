@@ -27,9 +27,18 @@ export class AppService {
     glob(`${imageFolder}*.*`, (err, files) => {
       files.forEach(element => {
         if (
-          element.split('.')[1] === 'jpg' ||
-          element.split('.')[1] === 'png' ||
-          element.split('.')[1] === 'jpeg'
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === 'jpg' ||
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === 'png' ||
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === 'jpeg'
         ) {
           this.imageNames.push(element);
         }
@@ -44,9 +53,18 @@ export class AppService {
       this.clearImagesNames();
       files.forEach(element => {
         if (
-          element.split('.')[1] === 'jpg' ||
-          element.split('.')[1] === 'png' ||
-          element.split('.')[1] === 'jpeg'
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === 'jpg' ||
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === 'png' ||
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === 'jpeg'
         ) {
           this.imageNames.push(element);
         }
@@ -66,10 +84,22 @@ export class AppService {
     glob(`${imageFolder}*.*`, (err, files) => {
       files.forEach(element => {
         if (
-          element.split('.')[1] === 'mp4' ||
-          element.split('.')[1] === '3gp' ||
-          element.split('.')[1] === 'flv' ||
-          element.split('.')[1] === 'mvk'
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === 'mp4' ||
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === '3gp' ||
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === 'flv' ||
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === 'mvk'
         ) {
           this.videoNames.push(element);
         }
@@ -83,9 +113,18 @@ export class AppService {
     glob(`${imageFolder}*.*`, (err, files) => {
       files.forEach(element => {
         if (
-          element.split('.')[1] === 'jpg' ||
-          element.split('.')[1] === 'png' ||
-          element.split('.')[1] === 'jpeg'
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === 'jpg' ||
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === 'png' ||
+          element
+            .split('/')
+            .pop(-1)
+            .split('.')[1] === 'jpeg'
         ) {
           this.videoNames.push(element);
         }
