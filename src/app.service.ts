@@ -5,7 +5,7 @@ import { glob } from 'glob';
 @Injectable()
 export class AppService {
   // This are the relative routes for the folders that contains the images/videos (should change this to yours)
-  private imageFolder = '../../Escritorio/';
+  private imageFolder = '../../public/images/';
   private videoFolder = '../../public/videos/';
 
   public imageNames = Array<string>();
@@ -22,6 +22,7 @@ export class AppService {
     return imgPath;
   }
 
+  // Function that load images when the constructor is called
   loadAllImages() {
     const imageFolder = join(__dirname, this.imageFolder);
     glob(`${imageFolder}*.*`, (err, files) => {
@@ -53,6 +54,7 @@ export class AppService {
     return videoPath;
   }
 
+  // Function that load videos when the constructor is called
   loadAllVideos() {
     const imageFolder = join(__dirname, this.videoFolder);
     glob(`${imageFolder}*.*`, (err, files) => {
@@ -92,6 +94,7 @@ export class AppService {
     this.imageNames = [];
   }
 
+  // Function that check if the files of the folder are images
   private checkImgExtension(absolutePath): boolean {
     if (
       absolutePath
@@ -113,6 +116,7 @@ export class AppService {
     }
   }
 
+  // Function that check if the files of the folder are videos
   private checkVideoExtension(absolutePath): boolean {
     if (
       absolutePath
