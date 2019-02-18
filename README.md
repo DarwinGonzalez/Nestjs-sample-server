@@ -26,7 +26,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Simple API made with [Nest](https://github.com/nestjs/nest) framework to serve static images and videos from a folder of your computer. Before you start you have to configure the relatives path of this folders (modify private atributtes 'imageFolder' and 'videoFolder' with the relative path related to this API). Once you have do that all you need is throw requests to '/images' or '/videos' to take all the files and videos.
 
 ## Installation
 
@@ -47,29 +47,6 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
 ## License
 
-  Nest is [MIT licensed](LICENSE).
+  Nest is [MIT licensed], use this wherever you want (LICENSE).
