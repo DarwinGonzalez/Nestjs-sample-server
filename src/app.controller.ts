@@ -1,4 +1,4 @@
-import { Controller, Get, Res, Param } from '@nestjs/common';
+import { Controller, Get, Res, Param, Header } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -14,8 +14,15 @@ export class AppController {
 
   // Returns a vector of URL's of each image in the directory images
   @Get('images')
-  getAll(@Res() res) {
+  getAllImages(@Res() res) {
     const imgPath = this.appService.getAllImages();
+    return res.send(imgPath);
+  }
+
+  // Returns an array of 'mockup' images to test the application
+  @Get('images-prueba')
+  getAllTest(@Res() res) {
+    const imgPath = this.appService.getAllTest();
     return res.send(imgPath);
   }
 
@@ -28,8 +35,14 @@ export class AppController {
 
   // Returns an array of URL's of each video in the directory videos
   @Get('videos')
-  getAllV(@Res() res) {
+  getAllVideos(@Res() res) {
     const imgPath = this.appService.getAllVideos();
+    return res.send(imgPath);
+  }
+
+  @Get('videos-prueba')
+  getAllTestVideos(@Res() res) {
+    const imgPath = this.appService.getAllTestVideo();
     return res.send(imgPath);
   }
 }
