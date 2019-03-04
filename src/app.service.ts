@@ -30,29 +30,27 @@ export class AppService {
 
   loadAllImages() {
     const imageFolder = join(__dirname, this.imageFolder);
-    glob(`${imageFolder}*.*`, (err, files) => {
-      files.forEach(element => {
-        if (this.checkImageExtension(element)) {
-          this.imageNames.push(
-            this.serverImagesURL + element.split('/').pop(-1)
-          );
-        }
-      });
+    const files = glob.sync(`${imageFolder}*.*`);
+    files.forEach(element => {
+      if (this.checkImageExtension(element)) {
+        this.imageNames.push(
+          this.serverImagesURL + element.split('/').pop(-1)
+        );
+      }
     });
   }
 
   // Function that get all images URL's and return an array with all of it
   getAllImages(): any {
     const imageFolder = join(__dirname, this.imageFolder);
-    glob(`${imageFolder}*.*`, (err, files) => {
-      this.clearImagesNames();
-      files.forEach(element => {
-        if (this.checkImageExtension(element)) {
-          this.imageNames.push(
-            this.serverImagesURL + element.split('/').pop(-1)
-          );
-        }
-      });
+    const files = glob.sync(`${imageFolder}*.*`);
+    this.clearImagesNames();
+    files.forEach(element => {
+      if (this.checkImageExtension(element)) {
+        this.imageNames.push(
+          this.serverImagesURL + element.split('/').pop(-1)
+        );
+      }
     });
     return this.imageNames;
   }
@@ -64,30 +62,28 @@ export class AppService {
   }
 
   loadAllVideos() {
-    const imageFolder = join(__dirname, this.videoFolder);
-    glob(`${imageFolder}*.*`, (err, files) => {
-      files.forEach(element => {
-        if (this.checkVideoExtension(element)) {
-          this.videoNames.push(
-            this.serverVideosURL + element.split('/').pop(-1)
-          );
-        }
-      });
+    const videoFolder = join(__dirname, this.videoFolder);
+    const files = glob.sync(`${videoFolder}*.*`);
+    files.forEach(element => {
+      if (this.checkVideoExtension(element)) {
+        this.videoNames.push(
+          this.serverVideosURL + element.split('/').pop(-1)
+        );
+      }
     });
   }
 
   // Function that get all videos URL's and return an array with all of it
   getAllVideos(): any {
-    const imageFolder = join(__dirname, this.videoFolder);
-    glob(`${imageFolder}*.*`, (err, files) => {
-      this.clearVideoNames();
-      files.forEach(element => {
-        if (this.checkVideoExtension(element)) {
-          this.videoNames.push(
-            this.serverVideosURL + element.split('/').pop(-1)
-          );
-        }
-      });
+    const videoFolder = join(__dirname, this.videoFolder);
+    const files = glob.sync(`${videoFolder}*.*`);
+    this.clearVideoNames();
+    files.forEach(element => {
+      if (this.checkVideoExtension(element)) {
+        this.videoNames.push(
+          this.serverVideosURL + element.split('/').pop(-1)
+        );
+      }
     });
     return this.videoNames;
   }
